@@ -1,0 +1,37 @@
+// .devcontainer/devcontainer.json
+{
+  "name": "Salesforce LWC Development",
+  // We will use a base Ubuntu image and add the Salesforce CLI feature.
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu-22.04",
+
+  "features": {
+    // This feature installs the Salesforce CLI
+    "ghcr.io/devcontainers/features/salesforce-cli:1": {}
+  },
+
+  // Forward the port used by the LWC local development server.
+  "forwardPorts": [3001],
+
+  // These VS Code extensions will be installed automatically in the Codespace.
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "salesforce.salesforce-vscode-extensions",
+        "dbaeumer.vscode-eslint"
+      ],
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash"
+      }
+    }
+  },
+
+  // This command runs after the Codespace is created.
+  // It makes our setup script executable and then runs it.
+  "postCreateCommand": "bash .devcontainer/post-create.sh",
+
+  // Use 'postCreateCommand' to run commands after the container is created.
+  // "postCreateCommand": "sf --version",
+
+  // Comment out to connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
+  "remoteUser": "vscode"
+}
